@@ -1,5 +1,5 @@
 format 		ELF64
-public 	   _start
+public	       _start
 
 	bs_char rb 1
 
