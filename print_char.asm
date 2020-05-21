@@ -1,20 +1,24 @@
 format ELF64
 public _start
 
+	bs_char rb 1
+
 _start:
-	add rax, 'A'
+	mov rax, 'A'
+	call _print_char
+	mov rax, 'S'
+	call _print_char
+	mov rax, 'S'
 	call _print_char
 	jmp _exit
 
 _print_char:
-	push rax
-	mov rax, 1
-	mov rdi, 1
-	mov rsi, rsp
+	mov [bs_char], al
+	mov rax, 4
+	mov rbx, 1
+	mov rcx, bs_char
 	mov rdx, 1
-
-	syscall
-	pop rax
+	int 0x80
 	ret
 
 _exit:
